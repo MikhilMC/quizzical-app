@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Quizzical from "./components/Quizzical";
+import Start from "./components/Start";
 
 function App() {
+  const [startQuiz, setStartQuiz] = useState(false);
+
+  const handleStartQuiz = () => {
+    setStartQuiz(true);
+  };
+
+  // const content =
+  //   startQuiz === false ? (
+  //     <div className="quiz-start">
+  //       <Start start={handleStartQuiz} />
+  //     </div>
+  //   ) : (
+  //     <div className="quiz">
+  //       <Quizzical />
+  //     </div>
+  //   );
+
+  const content =
+    startQuiz === false ? <Start start={handleStartQuiz} /> : <Quizzical />;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`${startQuiz === false ? "quiz-start" : "quiz"}`}>
+      {content}
     </div>
   );
 }
